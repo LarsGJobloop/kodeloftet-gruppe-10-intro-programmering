@@ -1,40 +1,24 @@
-let greeting = "Hello Kodeloftet"
+// Hva er addressen til der dataen er
+let url = "https://ghibliapi.vercel.app/films/"
 
-console.log(greeting)
-greeting = "Helt annet"
-console.log(greeting)
+// Send melding til siden og vent på svar
+let response = await fetch(url)
 
-// dette er en kommentar
+// Konver fra standard formatet til javascript formatet
+let data = await response.json()
 
-let a = 10
-let b = 32
-let c = a + b
-console.log(c)
+// Hent ut liste elementet fra dokumente
+let filmList = document.getElementById("film-list")
 
-let lars = {
-    name: "Lars Gunnar",
-    age: 35,
-    alive: false,
-}
-console.log(lars)
-
-console.log(lars.name)
-
-
-if (lars.alive) 
+// For hver data punkt i data settet
+for (let movie of data) 
 {
-    console.log("He's alive!")
+    // Lage html elementet
+    let element = document.createElement("li")
+
+    // Konfigurer elementet
+    element.textContent = movie.title
+
+    // Sett det inn i dokumentet
+    filmList.append(element)
 }
-else
-{
-    console.log("He's dead!")
-}
-
-
-
-
-
-
-
-
-
